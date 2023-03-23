@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.erudio.data.DTO.v1.PersonDTO;
+import br.com.erudio.data.DTO.v2.PersonDTOv2;
 import br.com.erudio.services.PersonServices;
 
 @RestController
@@ -43,6 +44,13 @@ public class PersonController {
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public PersonDTO create(@RequestBody PersonDTO PersonDTO) throws Exception {		
 		return service.create(PersonDTO);
+	}
+	
+	@PostMapping(value = "/v2",
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public PersonDTOv2 createv2(@RequestBody PersonDTOv2 Person) throws Exception {		
+		return service.createv2(Person);
 	}
 		
 	@PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
