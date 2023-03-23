@@ -1,7 +1,6 @@
 package br.com.erudio.controllers;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,10 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.erudio.model.Person;
+import br.com.erudio.data.DTO.v1.PersonDTO;
 import br.com.erudio.services.PersonServices;
 
 @RestController
@@ -29,28 +27,28 @@ public class PersonController {
 	
 	@GetMapping(value = "/",			
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Person> findAll() {		
+	public List<PersonDTO> findAll() {		
 		return service.findAll();
 	}
 	
 	
 	@GetMapping(value = "/{id}",			
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person findById(@PathVariable(value = "id") Long id) throws Exception {		
+	public PersonDTO findById(@PathVariable(value = "id") Long id) throws Exception {		
 		return service.findById(id);
 	}
 	
 	
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Person create(@RequestBody Person person) throws Exception {		
-		return service.create(person);
+	public PersonDTO create(@RequestBody PersonDTO PersonDTO) throws Exception {		
+		return service.create(PersonDTO);
 	}
 		
 	@PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Person update(@RequestBody Person person) throws Exception {		
-		return service.update(person);
+	public PersonDTO update(@RequestBody PersonDTO PersonDTO) throws Exception {		
+		return service.update(PersonDTO);
 	}
 	
 	@DeleteMapping(value = "/{id}")
