@@ -3,12 +3,21 @@ package br.com.erudio.data.DTO.v1;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class PersonDTO implements Serializable{
+import org.springframework.hateoas.RepresentationModel;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.github.dozermapper.core.Mapping;
+
+@JsonPropertyOrder({"id","firstName", "lastName", "address", "gender"})
+public class PersonDTO extends RepresentationModel<PersonDTO> implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	                                          
-	private Long id;
+	@JsonProperty("id")  
+	@Mapping("id")
+	private Long key;
+	
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -50,17 +59,17 @@ public class PersonDTO implements Serializable{
 		this.gender = gender;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long key) {
+		this.key = key;
 	}
 	
-	public Long getId() {
-		return id;
+	public Long getKey() {
+		return key;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, firstName, gender, id, lastName);
+		return Objects.hash(address, firstName, gender, key, lastName);
 	}
 
 	@Override
@@ -73,7 +82,7 @@ public class PersonDTO implements Serializable{
 			return false;
 		PersonDTO other = (PersonDTO) obj;
 		return Objects.equals(address, other.address) && Objects.equals(firstName, other.firstName)
-				&& Objects.equals(gender, other.gender) && Objects.equals(id, other.id)
+				&& Objects.equals(gender, other.gender) && Objects.equals(key, other.key)
 				&& Objects.equals(lastName, other.lastName);
 	}
 	

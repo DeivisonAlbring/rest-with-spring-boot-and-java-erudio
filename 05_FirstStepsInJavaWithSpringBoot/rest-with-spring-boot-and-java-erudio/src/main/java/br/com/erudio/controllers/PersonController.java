@@ -36,7 +36,8 @@ public class PersonController {
 	
 	
 	@GetMapping(value = "/{id}",			
-			produces = {MediaType.APPLICATION_JSON,
+			produces = {
+					MediaType.APPLICATION_JSON,
 					MediaType.APPLICATION_XML,
 					MediaType.APPLICATION_YML})
 	public PersonDTO findById(@PathVariable(value = "id") Long id) throws Exception {		
