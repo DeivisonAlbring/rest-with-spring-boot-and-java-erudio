@@ -44,7 +44,6 @@ public class PersonServices {
 		
 		return persons;
 	}
-	
 
 	public PersonDTO findById(Long id) {
 				
@@ -84,7 +83,6 @@ public class PersonServices {
 		
 	}
 	
-	
 	public PersonDTO update(PersonDTO PersonDTO) {
 		
 		if (PersonDTO == null) throw new RequiredObjectIsNullException();		
@@ -104,7 +102,6 @@ public class PersonServices {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 		}
 		
 		return DTO;
