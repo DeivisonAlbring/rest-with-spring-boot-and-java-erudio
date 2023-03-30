@@ -28,9 +28,9 @@ public class Books  implements Serializable{
 	@Column(name="author", nullable = false)
 	private String author;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd 'T'HH:mm:ss.SSSXXX", timezone = "America/Sao_Paulo")
-	@Temporal(TemporalType.TIMESTAMP)
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd 'T'HH:mm:ss.SSSXXX", timezone = "America/Sao_Paulo")	
 	@Column(name="launch_date", nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date launchDate;
 	
 	@Column(name="price", nullable = false)
@@ -99,6 +99,7 @@ public class Books  implements Serializable{
 				&& Objects.equals(title, other.title);
 	}
 
+	
 
 
 }

@@ -93,7 +93,7 @@ public class BooksServices {
 		entity.setAuthor(booksDTO.getAuthor());
 		entity.setTitle(booksDTO.getTitle());
 		entity.setPrice(booksDTO.getPrice());
-		entity.setLaunchDate(booksDTO.getLaunch_Date());
+		entity.setLaunchDate(booksDTO.getlaunchDate());
 		
 		var DTO = DozerMapper.parseObject(repository.save(entity),BooksDTO.class);
 		

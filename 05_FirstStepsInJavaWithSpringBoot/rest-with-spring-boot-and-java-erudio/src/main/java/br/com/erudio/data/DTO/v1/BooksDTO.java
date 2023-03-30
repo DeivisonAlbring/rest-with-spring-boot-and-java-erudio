@@ -16,19 +16,17 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @JsonPropertyOrder({"Id","author", "title", "price", "title"})
-public class BooksDTO extends RepresentationModel<PersonDTO> implements Serializable {
+public class BooksDTO extends RepresentationModel<BooksDTO> implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@JsonProperty("Id")
 	@Mapping("id")
-	private long key;
-	
-	private String author;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd 'T'HH:mm:ss.SSSXXX", timezone = "America/Sao_Paulo")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date launch_Date;
+	private long key;	
+	private String author;	
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd 'T'HH:mm:ss.SSSXXX", timezone = "America/Sao_Paulo")
+	@Temporal(TemporalType.DATE)
+	private Date launchDate;
 	
 	private float price;
 	private String title;
@@ -53,12 +51,12 @@ public class BooksDTO extends RepresentationModel<PersonDTO> implements Serializ
 		this.author = author;
 	}
 
-	public Date getLaunch_Date() {
-		return launch_Date;
+	public Date getlaunchDate() {
+		return launchDate;
 	}
 
-	public void setLaunch_Date(Date launch_Date) {
-		this.launch_Date = launch_Date;
+	public void setlaunchDate(Date launchDate) {
+		this.launchDate = launchDate;
 	}
 
 	public float getPrice() {
@@ -81,7 +79,7 @@ public class BooksDTO extends RepresentationModel<PersonDTO> implements Serializ
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(author, key, launch_Date, price, title);
+		result = prime * result + Objects.hash(author, key, launchDate, price, title);
 		return result;
 	}
 
@@ -95,10 +93,12 @@ public class BooksDTO extends RepresentationModel<PersonDTO> implements Serializ
 			return false;
 		BooksDTO other = (BooksDTO) obj;
 		return Objects.equals(author, other.author) && key == other.key
-				&& Objects.equals(launch_Date, other.launch_Date)
+				&& Objects.equals(launchDate, other.launchDate)
 				&& Float.floatToIntBits(price) == Float.floatToIntBits(other.price)
 				&& Objects.equals(title, other.title);
 	}
+
+	
 	
 	
 	

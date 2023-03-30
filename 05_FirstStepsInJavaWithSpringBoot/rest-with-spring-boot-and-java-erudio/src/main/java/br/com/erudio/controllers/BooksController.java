@@ -102,8 +102,8 @@ public class BooksController {
 		@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
 	}
 )
-	public BooksDTO create(@RequestBody BooksDTO PersonDTO) throws Exception {		
-		return service.create(PersonDTO);
+	public BooksDTO create(@RequestBody BooksDTO booksDTO) throws Exception {		
+		return service.create(booksDTO);
 	}
 	
 	@PutMapping(
