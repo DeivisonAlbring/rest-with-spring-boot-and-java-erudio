@@ -37,7 +37,7 @@ public class BooksController {
 					MediaType.APPLICATION_JSON,
 					MediaType.APPLICATION_XML,
 					MediaType.APPLICATION_YML})
-	@Operation(summary = "Finds all People", description = "Finds all Books",
+	@Operation(summary = "Finds all Books", description = "Finds all Books",
 	tags = {"Book"},
 	responses = {
 		@ApiResponse(description = "Success", responseCode = "200",
