@@ -1,7 +1,10 @@
-package br.com.erudio.data.DTO.v1.security;
+package br.com.erudio.integrationtests.dto;
 
 import java.io.Serializable;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class AccountCredentialsDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -9,7 +12,8 @@ public class AccountCredentialsDTO implements Serializable{
 	private String username;
 	private String password;
 	
-	public AccountCredentialsDTO() {		
+	public AccountCredentialsDTO() {
+		
 	}
 	
 	public AccountCredentialsDTO(String username, String password) {
