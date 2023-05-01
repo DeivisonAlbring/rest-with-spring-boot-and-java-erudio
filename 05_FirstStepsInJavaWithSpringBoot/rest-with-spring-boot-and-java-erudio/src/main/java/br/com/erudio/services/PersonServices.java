@@ -16,6 +16,7 @@ import br.com.erudio.exceptions.ResourceNotFoundException;
 import br.com.erudio.mapper.DozerMapper;
 import br.com.erudio.model.Person;
 import br.com.erudio.repositories.PersonRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class PersonServices {
@@ -117,5 +118,27 @@ public class PersonServices {
 		
 	}
 	
+	@Transactional
+	public PersonDTO disablePerson(Long id) {
+		
+		logger.info("Disabling one PersonDTO");			
+		
+		repository.disablePerson(id);
+		
+		var entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+		
+		PersonDTO DTO = DozerMapper.parseObject(entity, PersonDTO.class);
+		
+		try {
+			DTO.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		return DTO;
+		
+	}
 	
 }

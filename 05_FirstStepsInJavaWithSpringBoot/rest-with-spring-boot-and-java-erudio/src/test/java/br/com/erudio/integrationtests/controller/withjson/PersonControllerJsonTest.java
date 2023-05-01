@@ -1,6 +1,7 @@
 package br.com.erudio.integrationtests.controller.withjson;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -173,6 +174,33 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest{
 		
 		assertNotNull(content);
 		assertEquals("Invalid CORS request",content);
+		
+	}
+	
+	@Test	
+	@Order(5)
+	public void testDisablePersonById() throws JsonMappingException, JsonProcessingException {
+		
+		var content =
+				given().spec(specification)
+				.contentType(TestConfigs.CONTENT_TYPE_JSON)
+				.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_ERUDIO)
+			.pathParam("id", person.getId())
+			.when()
+				.patch("{id}")
+			.then()
+				.statusCode(200)
+				.extract()
+					.body()
+						.asString();
+		
+		PersonDTO persistedPerson = objectMapper.readValue(content, PersonDTO.class);
+		person = persistedPerson;
+		
+		assertNotNull(persistedPerson);
+		assertTrue(persistedPerson.getId() > 0);
+		assertFalse(person.isEnabled());
+		
 		
 	}
 
