@@ -1,5 +1,5 @@
 package br.com.erudio.config;
-
+//Config da openapi commitr teste
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
